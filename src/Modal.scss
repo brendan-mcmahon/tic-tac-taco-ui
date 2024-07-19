@@ -1,0 +1,134 @@
+@import "./Common.scss";
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1);
+    background: $taco-gradient;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding: 20px;
+    z-index: 2;
+
+    
+}
+
+.modal-content {
+    background-color: $white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.modal-header {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin-bottom: 32px;
+
+    &>* {
+        grid-row: 1 / 1;
+        grid-column: 1 / 1;
+    }
+
+    h2 {
+        color: $white;
+    }
+
+    #taco {
+        transform: translateY(4px);
+    }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    input {
+        flex-grow: 1;
+        margin-right: 10px;
+        padding: 10px;
+        border: 3px solid $black;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .radio-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 32px;
+
+        .radio {
+            font-family: "TacoBell", sans-serif;
+            font-size: .8rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+
+            &.selected {
+                background-color: $blue;
+                color: $white;
+            }
+        }
+
+        label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        input {
+            margin-right: 5px;
+        }
+    }
+}
+
+.input-full {
+    margin-right: 0;
+}
+
+.modal h2 {
+    color: $white;
+    font-size: 2rem;
+    transform: translateY(8px);
+}
+
+.modal p {
+    color: #666;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: $pink;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    transition: transform 0.3s;
+}
+
+.modal button:hover {
+    transform: scale(1.02);
+    // box-shadow:rgba(0, 0, 0, .25) 0px 10px 20px 0px;
+}
+
+.create-game {
+    width: 100%;
+}

@@ -1,0 +1,14 @@
+$blue: #3c8e9e;
+$pink: #e7727f;
+$purple: #754a97;
+$white: #fff2e9;
+$black: #1e1e1e;
+
+$blue-stop: 53%;
+$purple-stop: calc(((100% - $blue-stop) / 2) + $blue-stop);
+
+$taco-gradient: linear-gradient(0deg,
+        $blue $blue-stop,
+        $purple $blue-stop,
+        $purple $purple-stop,
+        $pink $purple-stop );

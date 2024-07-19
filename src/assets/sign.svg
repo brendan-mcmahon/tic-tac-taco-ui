@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 180 85">
+  <path id="path5" fill="#490e12" stroke-width="1"
+    d="M 90 0 C 35 -0 53 47 0 47 v 38 H 180 V 47 c -53 0 -35 -47 -90 -47 z" />
+  <path fill="none" stroke="white" stroke-width="1"
+    d="M 90 5 C 40 5 58 52 5 52 V 80 H 175 V 52 C 122 52 140 5 90 5 Z" />
+</svg>
