@@ -36,18 +36,24 @@
 </script>
 
 <BoardOverlay isOpen={gameState?.status === "waiting"} text="" />
-<BoardOverlay isOpen={gameState?.currentPlayerId !== player.id} text=""/>
+<!-- <BoardOverlay isOpen={gameState?.currentPlayerId !== player.id} text="" /> -->
 
 <div class="board">
     {#each gameState.board as value, index}
-        <Clickable
-            id={`square-${index}`}
-            tabIndex={index + 1}
-            isDisabled={isDisabled(index)}
-            handleClick={() => handleClick(index)}
-            className={`square ${gameState.winningCombination?.includes(index) ? "winner" : ""}`}
-        >
-            <img src={getPlayerIcon(value) || ""} alt={value} />
-        </Clickable>
+        <div class="square-container">
+            <div 
+                class="square-overlay"
+                class:visible={gameState?.status === "waiting" || gameState?.currentPlayerId !== player.id}
+                ></div>
+            <Clickable
+                className={`square ${gameState.winningCombination?.includes(index) ? "winner" : ""}`}
+                id={`square-${index}`}
+                tabIndex={index + 1}
+                isDisabled={isDisabled(index)}
+                handleClick={() => handleClick(index)}
+            >
+                <img src={getPlayerIcon(value) || ""} alt={value} />
+            </Clickable>
+        </div>
     {/each}
 </div>
