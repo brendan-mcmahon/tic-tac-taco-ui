@@ -11,6 +11,7 @@
   import CopyButton from "./CopyButton.svelte";
   import Players from "./Players.svelte";
   import Modal from "./Modal.svelte";
+    import Waiting from "./Waiting.svelte";
 
   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const socket = io(apiUrl);
@@ -102,6 +103,8 @@
       winner={getWinner()}
     />
   </Modal>
+
+  <Waiting isOpen={$gameState?.status === "waiting"} title="Waiting for player 2..." />
 
   {#if $gameState}
     <Board gameState={$gameState} player={$player} {makeMove} />
