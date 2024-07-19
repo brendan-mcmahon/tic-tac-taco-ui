@@ -1,5 +1,4 @@
 #TODO
-* Don't allow blank names
 * Make it more obvious when it's your turn and when it's not your turn
 * track a uid in localStorage so we can reconnect
 * If both players in a game disconnect, kill the game from memory

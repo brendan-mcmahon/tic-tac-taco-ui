@@ -15,7 +15,7 @@
     padding: 20px;
     z-index: 2;
 
-    
+
 }
 
 .modal-content {
@@ -122,11 +122,18 @@
     transition: background-color 0.3s;
     font-size: 16px;
     transition: transform 0.3s;
-}
 
-.modal button:hover {
-    transform: scale(1.02);
-    // box-shadow:rgba(0, 0, 0, .25) 0px 10px 20px 0px;
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    &:disabled {
+        background-color: #ccc;
+        cursor: default;
+        &:hover {
+            transform: scale(1);
+        }
+    }
 }
 
 .create-game {

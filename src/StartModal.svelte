@@ -4,7 +4,7 @@
 
     let gameId: string = "";
     let playerName: string = "";
-    let mode: string  = "create";
+    let mode: string = "create";
 
     onMount(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -17,7 +17,6 @@
 
     export let onJoinGame = (gameId: string, playerName: string) => {};
     export let onCreateGame = (playerName: string) => {};
-
 </script>
 
 <div class="input-group">
@@ -52,13 +51,18 @@
 
     {#if mode === "join"}
         <input type="text" placeholder="Enter Game ID" bind:value={gameId} />
-        <button on:click={() => onJoinGame(gameId, playerName)}
-            >Join Game</button
+        <button
+            disabled={playerName == ""}
+            on:click={() => onJoinGame(gameId, playerName)}>Join Game</button
         >
     {/if}
 
     {#if mode === "create"}
-        <button class="create-game" on:click={() => onCreateGame(playerName)}>
+        <button
+            disabled={playerName == ""}
+            class="create-game"
+            on:click={() => onCreateGame(playerName)}
+        >
             Create Game
         </button>
     {/if}
