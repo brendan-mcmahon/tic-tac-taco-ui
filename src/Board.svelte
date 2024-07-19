@@ -1,7 +1,8 @@
 <script lang="ts">
     import Clickable from "./Clickable.svelte";
-import { iconMap } from "./iconMap";
+    import { iconMap } from "./iconMap";
     import type { Player } from "./models";
+    import BoardOverlay from "./BoardOverlay.svelte";
     export let gameState;
     export let makeMove;
     export let player;
@@ -18,7 +19,12 @@ import { iconMap } from "./iconMap";
         const gameIsFinished = gameState.status === "finished";
         const gameHasTwoPlayers = gameState.players.length === 2;
 
-        return valueExists || !isCurrentPlayer || gameIsFinished || !gameHasTwoPlayers;
+        return (
+            valueExists ||
+            !isCurrentPlayer ||
+            gameIsFinished ||
+            !gameHasTwoPlayers
+        );
     };
 
     $: getPlayerIcon = (playerId: string) => {
@@ -27,29 +33,21 @@ import { iconMap } from "./iconMap";
             : null;
         return iconKey ? iconMap[iconKey] : "";
     };
-
 </script>
+
+<BoardOverlay isOpen={gameState?.status === "waiting"} text="Waiting for Player 2..." />
+<BoardOverlay isOpen={gameState?.currentPlayerId !== player.id} text=""/>
 
 <div class="board">
     {#each gameState.board as value, index}
-    <Clickable
-        tabIndex={index + 1}
-        isDisabled={isDisabled(index)}
-        handleClick={() => handleClick(index)}
-        className={`square ${gameState.winningCombination?.includes(index) ? "winner" : ""}`}
-    >
-        <img src={getPlayerIcon(value) || ""} alt={value} />
-    </Clickable>
-        <!-- <div
-            tabindex={index + 1}
-            class:winner={gameState.winningCombination?.includes(index)}
-            class:disabled={isDisabled(index)}
-            class={"square"}
-            on:click={() => handleClick(index)}
-            on:keydown={(event) => { if (event.key === 'Enter' || event.key === ' ') makeMove(index) }}
-            role="button"
+        <Clickable
+            id={`square-${index}`}
+            tabIndex={index + 1}
+            isDisabled={isDisabled(index)}
+            handleClick={() => handleClick(index)}
+            className={`square ${gameState.winningCombination?.includes(index) ? "winner" : ""}`}
         >
-            <img src={getPlayerIcon(value) || ""} alt={value}/>
-        </div> -->
+            <img src={getPlayerIcon(value) || ""} alt={value} />
+        </Clickable>
     {/each}
 </div>

@@ -11,7 +11,6 @@
   import CopyButton from "./CopyButton.svelte";
   import Players from "./Players.svelte";
   import Modal from "./Modal.svelte";
-    import Waiting from "./Waiting.svelte";
 
   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const socket = io(apiUrl);
@@ -67,6 +66,14 @@
     player.set({ name: _playerName, id: uuidv4(), icon: "" });
     socket.emit("createGame", { player: $player });
   };
+  
+  $: currentPlayerName = $gameState?.currentPlayerId === $player?.id
+    ? "Your"
+    : $gameState?.players.find(
+        (p: Player) => p.id !== $player.id
+    )?.name;
+
+    console.log(currentPlayerName);
 
   const leaveGame = () => {
     socket.emit("leaveGame", { gameId: $gameState.id, player: $player });
@@ -84,29 +91,37 @@
   };
 </script>
 
+<Modal isOpen={$startModalOpen} title="Tic-Tac-Taco">
+  <StartModal onJoinGame={joinGame} onCreateGame={createGame} />
+</Modal>
+
+<Modal isOpen={$gameOverModalOpen} title="Game Over">
+  <GameOverModal
+    onRematch={rematch}
+    onNewGame={leaveGame}
+    isTieGame={$gameState?.isTieGame}
+    winner={getWinner()}
+  />
+</Modal>
+
 <div id="Game">
   <h1>Tic-Tac-O</h1>
   <h2 id="game-id">
     {$gameState?.id}
     <CopyButton stringToCopy={getGameUrl()} />
   </h2>
-
-  <Modal isOpen={$startModalOpen} title="Tic-Tac-Taco">
-    <StartModal onJoinGame={joinGame} onCreateGame={createGame}  />
-  </Modal>
-
-  <Modal isOpen={$gameOverModalOpen} title="Game Over">
-    <GameOverModal
-      onRematch={rematch}
-      onNewGame={leaveGame}
-      isTieGame={$gameState?.isTieGame}
-      winner={getWinner()}
-    />
-  </Modal>
-
-  <Waiting isOpen={$gameState?.status === "waiting"} title="Waiting for player 2..." />
-
   {#if $gameState}
+    {#if currentPlayerName}
+      <h2 id="turn-indicator">{currentPlayerName} Turn!</h2>
+    {/if}
+
+    <!-- {#if $gameState.status === "finished"}
+      <h2>{getWinner()} wins!</h2>
+    {/if}
+
+    {#if $gameState.isTieGame}
+      <h2>It's a tie!</h2>
+    {/if} -->
     <Board gameState={$gameState} player={$player} {makeMove} />
 
     <Players gameState={$gameState} />
