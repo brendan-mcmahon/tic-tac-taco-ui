@@ -35,15 +35,14 @@
     };
 </script>
 
-<BoardOverlay isOpen={gameState?.status === "waiting"} text="" />
-<!-- <BoardOverlay isOpen={gameState?.currentPlayerId !== player.id} text="" /> -->
+<p>{gameState?.status}</p>
 
 <div class="board">
     {#each gameState.board as value, index}
         <div class="square-container">
             <div 
                 class="square-overlay"
-                class:visible={gameState?.status === "waiting" || gameState?.currentPlayerId !== player.id}
+                class:visible={(gameState?.status === "waiting" || gameState?.currentPlayerId !== player.id)  && gameState?.status !== "finished"}
                 ></div>
             <Clickable
                 className={`square ${gameState.winningCombination?.includes(index) ? "winner" : ""}`}
