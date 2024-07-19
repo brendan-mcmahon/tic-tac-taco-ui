@@ -1,12 +1,23 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import Clickable from "./Clickable.svelte";
+
+    let gameId: string = "";
+    let playerName: string = "";
+    let mode: string  = "create";
+
+    onMount(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const _gameId = urlParams.get("gameId");
+        if (_gameId) {
+            gameId = _gameId;
+            mode = "join";
+        }
+    });
 
     export let onJoinGame = (gameId: string, playerName: string) => {};
     export let onCreateGame = (playerName: string) => {};
 
-    let gameId = "";
-    let playerName = "";
-    let mode = "create";
 </script>
 
 <div class="input-group">

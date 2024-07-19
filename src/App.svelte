@@ -77,13 +77,17 @@
 
   $: getWinner = (): string =>
     $gameState?.players?.filter((p) => p.id === $gameState?.winner)[0]?.name;
+
+  $: getGameUrl = (): string => {
+    return `${window.location.origin}?gameId=${$gameState?.id}`;
+  };
 </script>
 
 <div id="Game">
   <h1>Tic-Tac-O</h1>
   <h2 id="game-id">
     {$gameState?.id}
-    <CopyButton stringToCopy={$gameState?.id} />
+    <CopyButton stringToCopy={getGameUrl()} />
   </h2>
 
   <Modal isOpen={$startModalOpen} title="Tic-Tac-Taco">
