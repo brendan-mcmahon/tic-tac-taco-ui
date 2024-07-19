@@ -157,7 +157,16 @@ h1 {
 
 @media (max-width: 600px) {
     #app {
-        width: calc(100vw - 16px);
-        // height: 
+        padding: 16px;
+        width: calc(100dvw - 16px);
+        height: calc(100dvh - 16px);
+    }
+
+    #Game {
+        padding: 12px;
+    }
+    #game-id {
+        padding: 4px 8px;
+        font-size: 1em;
     }
 }
