@@ -1,6 +1,6 @@
 <script lang="ts">
     import copyIcon from "./assets/icons/copy.svg";
-    import "./CopyButton.scss";
+    import "./styles/CopyButton.scss";
     import Clickable from "./Clickable.svelte";
     export let stringToCopy: string;
 </script>

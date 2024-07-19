@@ -1,5 +1,5 @@
 <script>
-    import "./Modal.scss";
+    import "./styles/Modal.scss";
     import sign from "./assets/sign.svg";
     import taco from "./assets/taco.svg";
     import { fade } from "svelte/transition";

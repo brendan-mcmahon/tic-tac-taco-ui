@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "./Modal.scss";
+    import "./styles/Modal.scss";
 
     export let isTieGame: boolean = false;
     export let winner: string | null = null;

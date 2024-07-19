@@ -1,20 +1,20 @@
 <script lang="ts">
     import Clickable from "./Clickable.svelte";
-    import { iconMap } from "./iconMap";
-    import type { Player } from "./models";
+    import { iconMap } from "./utilities/iconMap";
+    import type { Player } from "./models/Player";
     export let gameState;
     export let makeMove;
     export let player;
 
     $: handleClick = (index: number) => {
         if (!isDisabled(index)) {
-            makeMove(index);
+            makeMove(index, gameState?.id, player?.id);
         }
     };
 
     $: isDisabled = (index: number) => {
         const valueExists = !!gameState.board[index];
-        const isCurrentPlayer = gameState.currentPlayerId === player.id;
+        const isCurrentPlayer = gameState.currentPlayerId === player?.id;
         const gameIsFinished = gameState.status === "finished";
         const gameHasTwoPlayers = gameState.players.length === 2;
 
@@ -39,7 +39,7 @@
         <div class="square-container">
             <div 
                 class="square-overlay"
-                class:visible={(gameState?.status === "waiting" || gameState?.currentPlayerId !== player.id)  && gameState?.status !== "finished"}
+                class:visible={(gameState?.status === "waiting" || gameState?.currentPlayerId !== player?.id)  && gameState?.status !== "finished"}
                 ></div>
             <Clickable
                 className={`square ${gameState.winningCombination?.includes(index) ? "winner" : ""}`}

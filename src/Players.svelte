@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { iconMap } from "./iconMap";
+    import { iconMap } from "./utilities/iconMap";
     export let gameState;
 </script>
 
