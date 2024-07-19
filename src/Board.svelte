@@ -35,7 +35,7 @@
     };
 </script>
 
-<BoardOverlay isOpen={gameState?.status === "waiting"} text="Waiting for Player 2..." />
+<BoardOverlay isOpen={gameState?.status === "waiting"} text="" />
 <BoardOverlay isOpen={gameState?.currentPlayerId !== player.id} text=""/>
 
 <div class="board">

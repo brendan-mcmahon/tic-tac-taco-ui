@@ -66,14 +66,11 @@
     player.set({ name: _playerName, id: uuidv4(), icon: "" });
     socket.emit("createGame", { player: $player });
   };
-  
-  $: currentPlayerName = $gameState?.currentPlayerId === $player?.id
-    ? "Your"
-    : $gameState?.players.find(
-        (p: Player) => p.id !== $player.id
-    )?.name;
 
-    console.log(currentPlayerName);
+  $: currentPlayerName =
+    $gameState?.currentPlayerId === $player?.id
+      ? "Your"
+      : $gameState?.players.find((p: Player) => p.id !== $player.id)?.name;
 
   const leaveGame = () => {
     socket.emit("leaveGame", { gameId: $gameState.id, player: $player });
@@ -112,7 +109,12 @@
   </h2>
   {#if $gameState}
     {#if currentPlayerName}
-      <h2 id="turn-indicator">{currentPlayerName} Turn!</h2>
+      {#if $gameState.status === "playing"}
+        <h2 id="turn-indicator">{currentPlayerName} Turn!</h2>
+      {/if}
+      {#if $gameState.status === "waiting"}
+        <h2 id="turn-indicator">Waiting Player 2...</h2>
+      {/if}
     {/if}
 
     <!-- {#if $gameState.status === "finished"}
