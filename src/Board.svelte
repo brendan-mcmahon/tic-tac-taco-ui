@@ -2,7 +2,6 @@
     import Clickable from "./Clickable.svelte";
     import { iconMap } from "./iconMap";
     import type { Player } from "./models";
-    import BoardOverlay from "./BoardOverlay.svelte";
     export let gameState;
     export let makeMove;
     export let player;
@@ -34,8 +33,6 @@
         return iconKey ? iconMap[iconKey] : "";
     };
 </script>
-
-<p>{gameState?.status}</p>
 
 <div class="board">
     {#each gameState.board as value, index}
