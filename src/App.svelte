@@ -30,6 +30,7 @@
 
 <div id="Game">
   <h1>Tic-Tac-O</h1>
+  <h2>Send this link to a friend to start playing!</h2>
   <h2 id="game-id">
     {$gameState?.id}
     <CopyButton stringToCopy={gameUrl} />
@@ -40,7 +41,7 @@
         <h2 id="turn-indicator">{currentPlayerName} Turn!</h2>
       {/if}
       {#if $gameState.status === "waiting"}
-        <h2 id="turn-indicator">Waiting Player 2...</h2>
+        <h2 id="turn-indicator">Waiting for Player 2...</h2>
       {/if}
     {/if}
     <Board gameState={$gameState} player={$player} {makeMove} />
