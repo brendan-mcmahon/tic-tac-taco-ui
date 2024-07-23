@@ -13,5 +13,5 @@ export function getGameUrl(gameState: GameState): string {
 export function getCurrentPlayerName(gameState: GameState, playerId: string) {
     return gameState?.currentPlayerId === playerId
         ? "Your"
-        : gameState?.players.find((p: Player) => p.id !== playerId)?.name;
+        : gameState?.players.find((p: Player) => p.id !== playerId)?.name + "'s";
 }

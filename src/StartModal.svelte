@@ -17,6 +17,15 @@
 
     export let onJoinGame = (gameId: string, playerName: string) => {};
     export let onCreateGame = (playerName: string) => {};
+    const onStartGame = (e: Event) => {
+        e.preventDefault();
+        console.log('starting game', playerName, gameId);
+        if (mode === "create") {
+            onCreateGame(playerName);
+        } else {
+            onJoinGame(gameId, playerName);
+        }
+    };
 </script>
 
 <div class="input-group">
@@ -42,28 +51,23 @@
         </Clickable>
     </div>
 
-    <input
-        type="text"
-        placeholder="Enter Your Name"
-        bind:value={playerName}
-        class="input-full"
-    />
+    <form on:submit={onStartGame}>
+        <input
+            type="text"
+            placeholder="Enter Your Name"
+            bind:value={playerName}
+            class="input-full"
+        />
+        {#if mode === "join"}
+            <input
+                type="text"
+                placeholder="Enter Game ID"
+                bind:value={gameId}
+            />
+        {/if}
 
-    {#if mode === "join"}
-        <input type="text" placeholder="Enter Game ID" bind:value={gameId} />
-        <button
-            disabled={playerName == ""}
-            on:click={() => onJoinGame(gameId, playerName)}>Join Game</button
-        >
-    {/if}
-
-    {#if mode === "create"}
-        <button
-            disabled={playerName == ""}
-            class="create-game"
-            on:click={() => onCreateGame(playerName)}
-        >
-            Create Game
+        <button disabled={playerName == ""} class="create-game" type="submit">
+            {mode === "create" ? "Create Game" : "Join Game"}
         </button>
-    {/if}
+    </form>
 </div>

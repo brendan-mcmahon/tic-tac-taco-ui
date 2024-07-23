@@ -98,12 +98,14 @@ h1 {
 }
 
 #game-id {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $white;
-    border-radius: 16px;
-    padding: 4px 16px;
+    #copy-id {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $white;
+        border-radius: 16px;
+        padding: 4px 16px;
+    }
 
     h2 {
         margin: 0;
@@ -138,7 +140,8 @@ h1 {
             padding: 4px 8px;
             border-radius: 8px;
             justify-content: space-between;
-            align-items: center;;
+            align-items: center;
+            ;
 
             p {
                 margin: 0;

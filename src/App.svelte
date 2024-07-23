@@ -1,8 +1,19 @@
 <script lang="ts">
   import "./styles/app.scss";
-  import { gameState, startModalOpen, gameOverModalOpen } from './socketEvents';
-  import { player, joinGame, createGame, leaveGame, rematch, makeMove } from './playerStore';
-  import { getGameUrl, getWinner, getCurrentPlayerName } from './utilities/gameUtils';
+  import { gameState, startModalOpen, gameOverModalOpen } from "./socketEvents";
+  import {
+    player,
+    joinGame,
+    createGame,
+    leaveGame,
+    rematch,
+    makeMove,
+  } from "./playerStore";
+  import {
+    getGameUrl,
+    getWinner,
+    getCurrentPlayerName,
+  } from "./utilities/gameUtils";
   import Board from "./Board.svelte";
   import Players from "./Players.svelte";
   import CopyButton from "./CopyButton.svelte";
@@ -24,17 +35,21 @@
     onRematch={() => rematch($gameState?.id, $player)}
     onNewGame={() => leaveGame($gameState?.id, $player)}
     isTieGame={$gameState?.isTieGame}
-    winner={winner}
+    {winner}
   />
 </Modal>
 
 <div id="Game">
   <h1>Tic-Tac-O</h1>
-  <h2>Send this link to a friend to start playing!</h2>
-  <h2 id="game-id">
-    {$gameState?.id}
-    <CopyButton stringToCopy={gameUrl} />
-  </h2>
+  {#if $gameState?.status === "waiting"}
+    <div id="game-id">
+      <h2>Send this link to a friend to start playing!</h2>
+      <h2 id="copy-id">
+        {$gameState?.id}
+        <CopyButton stringToCopy={gameUrl} />
+      </h2>
+    </div>
+  {/if}
   {#if $gameState}
     {#if currentPlayerName}
       {#if $gameState.status === "playing"}
