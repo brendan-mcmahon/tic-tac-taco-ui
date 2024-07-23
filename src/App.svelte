@@ -61,6 +61,8 @@
     {/if}
     <Board gameState={$gameState} player={$player} {makeMove} />
 
-    <Players gameState={$gameState} />
+    {#if $gameState?.status === "playing"}
+      <Players gameState={$gameState} />
+    {/if}
   {/if}
 </div>

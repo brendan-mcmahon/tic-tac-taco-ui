@@ -98,17 +98,20 @@ h1 {
 }
 
 #game-id {
+
+    h2 {
+        margin: 0;
+        font-size: .8em;
+    }
+
     #copy-id {
+        font-size: 1.25em;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: $white;
         border-radius: 16px;
         padding: 4px 16px;
-    }
-
-    h2 {
-        margin: 0;
     }
 }
 
@@ -233,10 +236,23 @@ h1 {
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 8px 0;
+    }
+
     #app {
-        padding: 16px;
+        padding: 16px 0;
         width: calc(100dvw - 16px);
         height: calc(100dvh - 16px);
+
+        #Game {
+
+            padding: 0;
+
+        h1 {
+            font-size: 1.75em;
+            margin-bottom: 8px;
+        }}
     }
 
     #Game {
