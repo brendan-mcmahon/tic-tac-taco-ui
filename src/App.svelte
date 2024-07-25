@@ -16,10 +16,10 @@
   } from "./utilities/gameUtils";
   import Board from "./Board.svelte";
   import Players from "./Players.svelte";
-  import CopyButton from "./CopyButton.svelte";
   import Modal from "./Modal.svelte";
   import GameOverModal from "./GameOverModal.svelte";
   import StartModal from "./StartModal.svelte";
+  import ShareButton from "./ShareButton.svelte";
 
   $: currentPlayerName = getCurrentPlayerName($gameState, $player?.id);
   $: winner = getWinner($gameState);
@@ -46,7 +46,7 @@
       <h2>Send this link to a friend to start playing!</h2>
       <h2 id="copy-id">
         {$gameState?.id}
-        <CopyButton stringToCopy={gameUrl} />
+        <ShareButton url={gameUrl} />
       </h2>
     </div>
   {/if}

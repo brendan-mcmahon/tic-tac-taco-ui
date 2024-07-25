@@ -26,7 +26,6 @@ const rematch = (gameId: string, player: Player) => {
 };
 
 const makeMove = (index: number, gameId: string, playerId: string) => {
-    console.log("makeMove", index, gameId, playerId);
     socket.emit("makeMove", { gameId, index, playerId });
 };
 

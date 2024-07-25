@@ -19,7 +19,6 @@
     export let onCreateGame = (playerName: string) => {};
     const onStartGame = (e: Event) => {
         e.preventDefault();
-        console.log('starting game', playerName, gameId);
         if (mode === "create") {
             onCreateGame(playerName);
         } else {

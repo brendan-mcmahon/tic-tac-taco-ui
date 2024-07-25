@@ -10,10 +10,15 @@ const startModalOpen = writable<boolean>(true);
 const gameOverModalOpen = writable<boolean>(false);
 
 socket.on("gameState", (state: GameState) => {
+    if (!state) {
+        gameOverModalOpen.set(false);
+        startModalOpen.set(true);
+        gameState.set(initialGameState);
+        return;
+    }
     gameState.set(state);
     startModalOpen.set(false);
     gameOverModalOpen.set(state.status === "finished");
-    console.log("gameState", state);
 });
 
 socket.on("gameDeleted", () => {
